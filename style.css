@@ -1,0 +1,93 @@
+:root {
+  --wght: 600;
+  --wdth: 100;
+  --transform-o-x: 50%;
+  --transform-o-y: 50%;
+}
+
+@font-face {
+  font-family: AvenirNext;
+  src: url("https://fonts.typedetail.com/AvenirNext_Variable.woff2") format("woff2");
+}
+
+body {
+  background: #000;
+  cursor: none;
+  margin: 0;
+  overflow: hidden;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+  rotate: -27deg; /* Оригинальный наклон */
+  perspective: 1000px;
+}
+
+.main .letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+div.letter {
+  font-size: 8vh;
+  font-family: AvenirNext, sans-serif;
+  font-variation-settings: 'wght' var(--wght), 'wdth' var(--wdth);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: white;
+  font-weight: bold;
+  position: relative;
+}
+
+div.letter__el {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  transform-origin: var(--transform-o-x) var(--transform-o-y);
+  justify-content: center;
+  align-items: center;
+  font-size: 30vw;
+  font-family: AvenirNext, sans-serif;
+  font-weight: bold;
+  color: white;
+  line-height: 1;
+  transition: transform-origin .5s linear;
+  
+  /* Статичное положение на старте */
+  transform: rotateX(0deg) scale(1);
+  will-change: transform;
+}
+
+/* Запуск анимации по классу .active */
+.main.active .letter__el {
+  animation: custom-anim-1 2.5s ease-in-out forwards;
+}
+
+/* Оригинальная 3D-анимация (360deg rotateX, scale 0.5 -> scale 2 -> scale 1) */
+@keyframes custom-anim-1 {
+  0% {
+    transform: rotateX(0deg) scale(1);
+  }
+  35% {
+    transform: rotateX(180deg) scale(0.5);
+  }
+  70% {
+    transform: rotateX(360deg) scale(2);
+  }
+  100% {
+    transform: rotateX(360deg) scale(1);
+  }
+}
