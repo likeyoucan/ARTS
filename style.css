@@ -1,52 +1,100 @@
 :root {
-  --wght: 600;
-  --wdth: 100;
+  --wght: 600; /* from 400.00 to 900.00 */
+  --wdth: 100; /* from 75.00 to 100.00 */
   --transform-o-x: 50%;
   --transform-o-y: 50%;
+
+  --translate-x-a: 0px;
+  --translate-y-a: 0px;
+  --translate-z-a: 0px;
+
+  --translate-x-b: 0px;
+  --translate-y-b: 0px;
+  --translate-z-b: 0px;
+
+  --translate-x-c: 0px;
+  --translate-y-c: 0px;
+  --translate-z-c: 0px;
+
+  --rotate-x-a: 0deg;
+  --rotate-y-a: 0deg;
+  --rotate-z-a: 0deg;
+
+  --rotate-x-b: 0deg;
+  --rotate-y-b: 0deg;
+  --rotate-z-b: 0deg;
+
+  --rotate-x-c: 0deg;
+  --rotate-y-c: 0deg;
+  --rotate-z-c: 0deg;
+
+  --scale-x-a: 0;
+  --scale-y-a: 0;
+  --scale-z-a: 0;
+
+  --scale-x-b: 0;
+  --scale-y-b: 0;
+  --scale-z-b: 0;
+
+  --scale-x-c: 0;
+  --scale-y-c: 0;
+  --scale-z-c: 0;
+
+  --skew-x-a: 0deg;
+  --skew-y-a: 0deg;
+
+  --skew-x-b: 0deg;
+  --skew-y-b: 0deg;
+
+  --skew-x-c: 0deg;
+  --skew-y-c: 0deg;
 }
 
 @font-face {
   font-family: AvenirNext;
-  src: url("https://fonts.typedetail.com/AvenirNext_Variable.woff2") format("woff2");
+  src: url("https://fonts.typedetail.com/AvenirNext_Variable.woff2")
+    format("woff2");
 }
 
 body {
-  background: #000;
+  background: rgb(15, 15, 15);
+  user-select: none;
   cursor: none;
-  margin: 0;
-  overflow: hidden;
 }
-
 .main {
   display: flex;
   flex-wrap: wrap;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: black;
-  rotate: -27deg; /* Оригинальный наклон */
-  perspective: 1000px;
+  rotate: -27deg;
 }
 
 .main .letter {
+  flex: 0 0 calc(100% / 5);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  box-sizing: border-box;
 }
 
 div.letter {
   font-size: 8vh;
-  font-family: AvenirNext, sans-serif;
-  font-variation-settings: 'wght' var(--wght), 'wdth' var(--wdth);
+  font-family: "M PLUS U", AvenirNext, sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings:
+    "wght" var(--wght),
+    "wdth" var(--wdth);
   margin: 0;
   padding: 0;
   overflow: hidden;
   color: white;
   font-weight: bold;
   position: relative;
+  /* 	-webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: white; */
+  //animation: slidein 0.5s infinite alternate ease-out;
 }
 
 div.letter__el {
@@ -60,34 +108,128 @@ div.letter__el {
   justify-content: center;
   align-items: center;
   font-size: 30vw;
-  font-family: AvenirNext, sans-serif;
-  font-weight: bold;
-  color: white;
-  line-height: 1;
-  transition: transform-origin .5s linear;
-  
-  /* Статичное положение на старте */
-  transform: rotateX(0deg) scale(1);
-  will-change: transform;
+  animation: custom-anim-1 2s infinite alternate linear;
+  transition: transform-origin 0.5s linear;
+  //background-image: url(http://www.indexartbookfair.com/IMAGES/1411_guadalajara_index_145.JPG);
 }
 
-/* Запуск анимации по классу .active */
-.main.active .letter__el {
-  animation: custom-anim-1 2.5s ease-in-out forwards;
-}
-
-/* Оригинальная 3D-анимация (360deg rotateX, scale 0.5 -> scale 2 -> scale 1) */
 @keyframes custom-anim-1 {
-  0% {
-    transform: rotateX(0deg) scale(1);
+  from {
+    //font-variation-settings:
+      "wght" 400,
+      "wdth" 75;
+    //font-size: 10vw;
+    //letter-spacing: 0;
+    //transform: translate3d(-200px, 200px, 1px) rotateY(2deg);
+    transform: rotateX(360deg) scale(0.9);
+    //opacity: 1;
   }
-  35% {
-    transform: rotateX(180deg) scale(0.5);
+
+  to {
+    //font-variation-settings:
+      "wght" 900,
+      "wdth" 100;
+    //font-size: 40vw;
+    //letter-spacing: 10vw;
+    //transform: translate3d(200px, -200px, 1px) rotateY(0deg);
+    transform: rotateX(0deg) scale(2);
+    //opacity: 0;
   }
-  70% {
-    transform: rotateX(360deg) scale(2);
-  }
-  100% {
-    transform: rotateX(360deg) scale(1);
-  }
+}
+
+.letter:nth-child(2) .letter__el {
+  top: 0;
+  left: -20vw;
+}
+.letter:nth-child(3) .letter__el {
+  top: 0;
+  left: -40vw;
+}
+.letter:nth-child(4) .letter__el {
+  top: 0;
+  left: -60vw;
+}
+.letter:nth-child(5) .letter__el {
+  top: 0;
+  left: -80vw;
+}
+.letter:nth-child(6) .letter__el {
+  top: -20vh;
+  left: 0;
+}
+.letter:nth-child(7) .letter__el {
+  top: -20vh;
+  left: -20vw;
+}
+.letter:nth-child(8) .letter__el {
+  top: -20vh;
+  left: -40vw;
+}
+.letter:nth-child(9) .letter__el {
+  top: -20vh;
+  left: -60vw;
+}
+.letter:nth-child(10) .letter__el {
+  top: -20vh;
+  left: -80vw;
+}
+.letter:nth-child(11) .letter__el {
+  top: -40vh;
+  left: 0;
+}
+.letter:nth-child(12) .letter__el {
+  top: -40vh;
+  left: -20vw;
+}
+.letter:nth-child(13) .letter__el {
+  top: -40vh;
+  left: -40vw;
+}
+.letter:nth-child(14) .letter__el {
+  top: -40vh;
+  left: -60vw;
+}
+.letter:nth-child(15) .letter__el {
+  top: -40vh;
+  left: -80vw;
+}
+.letter:nth-child(16) .letter__el {
+  top: -60vh;
+  left: 0;
+}
+.letter:nth-child(17) .letter__el {
+  top: -60vh;
+  left: -20vw;
+}
+.letter:nth-child(18) .letter__el {
+  top: -60vh;
+  left: -40vw;
+}
+.letter:nth-child(19) .letter__el {
+  top: -60vh;
+  left: -60vw;
+}
+.letter:nth-child(20) .letter__el {
+  top: -60vh;
+  left: -80vw;
+}
+.letter:nth-child(21) .letter__el {
+  top: -80vh;
+  left: 0;
+}
+.letter:nth-child(22) .letter__el {
+  top: -80vh;
+  left: -20vw;
+}
+.letter:nth-child(23) .letter__el {
+  top: -80vh;
+  left: -40vw;
+}
+.letter:nth-child(24) .letter__el {
+  top: -80vh;
+  left: -60vw;
+}
+.letter:nth-child(25) .letter__el {
+  top: -80vh;
+  left: -80vw;
 }
